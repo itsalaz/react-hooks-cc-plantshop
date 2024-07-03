@@ -1,6 +1,9 @@
 import React from "react";
 
 function Search() {
+
+  // filter 
+  
   return (
     <div className="searchbar">
       <label htmlFor="search">Search Plants:</label>
