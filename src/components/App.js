@@ -23,14 +23,10 @@ function App() {
     setPlants([...plants, newPlant])
   }
 
-  function handleDeletePlant(id) {
-    setPlants(plants.filter(plant => plant.id !== id))
-  }
-
   return (
     <div className="app">
       <Header/>
-      <PlantPage plants={plants} onAddPlant={handleAddPlant} onDeletePlant={handleDeletePlant}/>
+      <PlantPage plants={plants} onAddPlant={handleAddPlant}/>
     </div>
   );
 }

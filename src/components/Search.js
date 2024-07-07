@@ -1,18 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 
-function Search() {
+export default function Search({plants, onFilterPlants}) {
+  [search, setSearch] = useState("")
 
-  // filter 
-  function handleFilterPlant(filteredPlant) {
-    const filtedPlants = plants.map((plant) => {
-      if(plant.id === filteredPlant.id) {
-        return filteredPlant
-      } else {
-        return plant
-      }
-    })
-    setPlants(filteredPlants)
+  function handleSearch(event) {
+    event.target.value
+
+    const filterSearch = { 
   }
+  // filter 
+  
 
   return (
     <div className="searchbar">
@@ -21,10 +18,11 @@ function Search() {
         type="text"
         id="search"
         placeholder="Type a name to search..."
-        onChange={(e) => console.log("Searching...")}
+        value= {search}
+        onChange={handleSearch}
       />
     </div>
-  );
+  )
 }
 
-export default Search;
+}

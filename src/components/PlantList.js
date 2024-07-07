@@ -2,7 +2,7 @@ import React from "react";
 import PlantCard from "./PlantCard";
 import NewPlantForm from "./NewPlantForm"
 
-function PlantList({plants, onDeletePlant}) {
+export default function PlantList({plants}) {
   const [selectedPlant, setSelectedPlant] = useState("All")
   return (
     <ul className="cards">
@@ -12,7 +12,6 @@ function PlantList({plants, onDeletePlant}) {
       ))}
 
     </ul>
-  );
+  )
 }
 
-export default PlantList;

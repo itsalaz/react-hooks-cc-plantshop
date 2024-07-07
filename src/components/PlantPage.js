@@ -3,15 +3,14 @@ import NewPlantForm from "./NewPlantForm";
 import PlantList from "./PlantList";
 import Search from "./Search";
 
-function PlantPage() {
+export default function PlantPage({plants, onAddPlant}) {
 
   return (
     <main>
-      <NewPlantForm />
-      <Search />
+      <NewPlantForm plants={plants} onAddPlant={onAddPlant}/>
+      <Search plants={plants} onFilterPlants = {onFilterPlants}/>
       <PlantList />
     </main>
-  );
+  )
 }
 
-export default PlantPage;
