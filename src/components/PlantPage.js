@@ -9,18 +9,19 @@ export default function PlantPage({plants, onAddPlant}) {
   function handleSearchChange(event) {
     const searchPlant = event.target.value
     setSearch(searchPlant)
-
-    const filteredDisplay = plants.filter((plant) =. {
-      if(search === plants) {
-
-      }
-    })
   }
+
+  const filteredDisplay = plants.filter((plant) => {
+  plant.name.toLowerCase().includes(search.toLowerCase())
+  })
+
+
+
   return (
     <main>
       <NewPlantForm plants={plants} onAddPlant={onAddPlant}/>
       <Search plants={search} onSearchChange = {handleSearchChange}/>
-      <PlantList plants={filteredPlants}/>
+      <PlantList plants={filteredDisplay}/>
     </main>
   )
 }
