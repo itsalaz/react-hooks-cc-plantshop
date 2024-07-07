@@ -4,33 +4,34 @@ import PlantPage from "./PlantPage";
 
 function App() {
   const [plants, setPlants] = useState([])
-
   useEffect(() => {
     fetch("http://localhost:6001/plants")
-    .then((response) => response.json())
-    .then(items => {
-      setPlants(items)
+    .then(response => {
+      if(!response.ok) {
+        throw new Error("Network response was not ok")
+      }
+      return response.json()
+    })
+    .then(data => {
+      setPlants(data)
+    })
+    .catch(error => {
+      console.error("Error setting plants:", error)
     })
   }, [])
 
 
-  function addPlant(event, name, price, image) {
-    event.preventDefault()
-    fetch("http://localhost:6001/plants", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({name, price, image})
-    })
-    .then(response => response.json())
-    .then(newPlant => setPlants([...plants, newPlants])
-  )}
+  function handleAddPlant(newPlant) {
+    setPlants([...plants, newPlant])
+  }
+
+  function handleDeletePlant(id) {
+    setPlants(plants.filter(plant => plant.id !== id))
+  }
 
   return (
     <div className="app">
-      <Header />
+      <Header/>
       <PlantPage/>
     </div>
   );

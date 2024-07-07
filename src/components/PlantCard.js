@@ -1,6 +1,7 @@
 import React from "react";
 
-function PlantCard() {
+function PlantCard({plant, onFilterPlant, onDeletePlant}) {
+
   
   return (
     <li className="card" data-testid="plant-item">

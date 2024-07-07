@@ -1,25 +1,54 @@
 import {useState} from "react";
+import PlantList from "./PlantList";
 
-function NewPlantForm() {
-  const [name, setName] = useState('')
-  const [price, setPrice] = useState('')
-  const [image, setImage] = useState('')
+function NewPlantForm({onAddPlant}) {
+  const [formData, setFormData]= useState({
+    id: "",
+    name: "",
+    image: "",
+    price: "",
+  },
 
-  function changeName(event) {setName(event.target.value)}
-  function changeImage(event) {setImage(event.target.value)}
-  function changePrice(event) {setPrice(event.target.value)}
 
-  
 
-  return (
+  function handleSubmit(event) {
+    event.preventDefault() 
+    const newPlantData = {
+      id: parseInt(formData.id),
+      name: formData.name,
+      image: formData.image,
+      price: formData.price,
+    }
+    fetch("http://localhost:6001/plants", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPlantData)
+    })
+    .then((response) => {
+      if(!response.ok) {
+        throw new Error("Network Response was not ok")
+      }
+      return response.json()
+    })
+    .then((newPlant) => {
+      onAddPlant(newPlant)
+    })
+    .catch((error) => {
+      console.error("Error adding item", error)
+    })
+  })
+
+    return (
     <div className="new-plant-form">
       <h2>New Plant</h2>
-      <form onSubmit={(event) => handler(event, name, image, price)}>
-        <input type="text" name="name" placeholder="Plant name" onChange={changeName}/>
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="name" placeholder="Plant name" value={name} onChange={changeName}/>
         {``}
-        <input type="text" name="image" placeholder="Image URL" onChange={changeImage}/>
+        <input type="text" name="image" placeholder="Image URL" value={image}onChange={changeImage}/>
         {``}
-        <input type="number" name="price" step="0.01" placeholder="Price" onChange={changePrice}/>
+        <input type="number" name="price" step="0.01" placeholder="Price" value={price}onChange={changePrice}/>
         {``}
         <button type="submit">Add Plant</button>
       </form>

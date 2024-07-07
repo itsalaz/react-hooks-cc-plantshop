@@ -4,6 +4,7 @@ import PlantList from "./PlantList";
 import Search from "./Search";
 
 function PlantPage() {
+
   return (
     <main>
       <NewPlantForm />
