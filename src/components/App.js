@@ -1,26 +1,24 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Header from "./Header";
 import PlantPage from "./PlantPage";
 
 function App() {
   const [plants, setPlants] = useState([])
+
   useEffect(() => {
     fetch("http://localhost:6001/plants")
-    .then(response => {
+    .then((response) => {
       if(!response.ok) {
-        throw new Error("Network response was not ok")
+        throw new Error ("Network response was not Ok")
       }
       return response.json()
     })
-    .then(data => {
-      setPlants(data)
-    })
-    .catch(error => {
-      console.error("Error setting plants:", error)
+    .then((data) => {
+      setPlants(plants)
     })
   }, [])
 
-
+  
   function handleAddPlant(newPlant) {
     setPlants([...plants, newPlant])
   }
@@ -32,7 +30,7 @@ function App() {
   return (
     <div className="app">
       <Header/>
-      <PlantPage/>
+      <PlantPage plants={plants} onAddPlant={handleAddPlant} onDeletePlant={handleDeletePlant}/>
     </div>
   );
 }

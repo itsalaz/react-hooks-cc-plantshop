@@ -7,8 +7,15 @@ function NewPlantForm({onAddPlant}) {
     name: "",
     image: "",
     price: "",
-  },
+  }),
 
+
+    const handleChange = (e) => {
+      setFormData({
+        ...formData,
+        [e.target.name] : e.target.value,
+      })
+    }
 
 
   function handleSubmit(event) {
@@ -19,36 +26,33 @@ function NewPlantForm({onAddPlant}) {
       image: formData.image,
       price: formData.price,
     }
+
     fetch("http://localhost:6001/plants", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(newPlantData)
     })
     .then((response) => {
       if(!response.ok) {
-        throw new Error("Network Response was not ok")
+        throw new Error("Network Response Not Ok")
       }
       return response.json()
     })
     .then((newPlant) => {
-      onAddPlant(newPlant)
+      onAddNewPlant(newPlant)
     })
-    .catch((error) => {
-      console.error("Error adding item", error)
-    })
-  })
 
     return (
     <div className="new-plant-form">
       <h2>New Plant</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Plant name" value={name} onChange={changeName}/>
+        <input type="text" name="name" placeholder="Plant name" value={formData.name} onChange={handleChange}/>
         {``}
-        <input type="text" name="image" placeholder="Image URL" value={image}onChange={changeImage}/>
+        <input type="text" name="image" placeholder="Image URL" value={formData.image}onChange={handleChange}/>
         {``}
-        <input type="number" name="price" step="0.01" placeholder="Price" value={price}onChange={changePrice}/>
+        <input type="number" name="price" step="0.01" placeholder="Price" value={formData.price}onChange={handleChange}/>
         {``}
         <button type="submit">Add Plant</button>
       </form>
