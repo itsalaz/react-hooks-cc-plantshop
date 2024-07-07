@@ -1,15 +1,6 @@
 import React, {useState} from "react";
 
-export default function Search({plants, onFilterPlants}) {
-  [search, setSearch] = useState("")
-
-  function handleSearch(event) {
-    event.target.value
-
-    const filterSearch = { 
-  }
-  // filter 
-  
+export default function Search({search, onSearchChange}) {
 
   return (
     <div className="searchbar">
@@ -19,10 +10,8 @@ export default function Search({plants, onFilterPlants}) {
         id="search"
         placeholder="Type a name to search..."
         value= {search}
-        onChange={handleSearch}
+        onChange={onSearchChange}
       />
     </div>
   )
-}
-
 }
