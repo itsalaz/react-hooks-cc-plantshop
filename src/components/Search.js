@@ -2,6 +2,7 @@ import React, {useState} from "react";
 
 export default function Search({search, onSearchChange}) {
 
+
   return (
     <div className="searchbar">
       <label htmlFor="search">Search Plants:</label>
@@ -10,7 +11,7 @@ export default function Search({search, onSearchChange}) {
         id="search"
         placeholder="Type a name to search..."
         value= {search}
-        onChange={onSearchChange}
+        onChange= {(e) => onSearchChange(e.target.value)}
       />
     </div>
   )

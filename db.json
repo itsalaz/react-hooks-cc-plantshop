@@ -44,9 +44,9 @@
     },
     {
       "id": 8,
-      "name": "Orchid",
-      "image": "ramen.png",
-      "price": "2"
+      "name": "orchi",
+      "image": "pages/orchid",
+      "price": 10
     }
   ]
 }
