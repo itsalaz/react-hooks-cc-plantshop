@@ -18,4 +18,3 @@ export default function PlantCard({plant}) {
     </li>
   )
 }
-

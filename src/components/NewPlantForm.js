@@ -24,7 +24,7 @@ export default function NewPlantForm({onAddPlant}) {
       price: parseFloat(formData.price),
     }
 
-    fetch("http://localhost:6001/plants", {
+    fetch("http://localhost:3000/plants", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export default function NewPlantForm({onAddPlant}) {
       return response.json()
     })
     .then((newPlant)=> {
-      onAddNewPlant(newPlant)
+      setFormData(newPlant)
     })
     .catch((error) => {
       console.error("Error adding plant", error)
@@ -66,4 +66,3 @@ export default function NewPlantForm({onAddPlant}) {
     </div>
   )
 }
-

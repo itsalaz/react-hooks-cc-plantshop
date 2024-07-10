@@ -6,7 +6,7 @@ function App() {
   const [plants, setPlants] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:6001/plants")
+    fetch("http://localhost:3000/plants")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not Ok")
